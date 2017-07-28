@@ -1,0 +1,169 @@
+use Libraries.Game.Game
+use Libraries.Sound.Audio
+
+class Main is Game
+    Audio audio
+    action Main
+        StartGame()
+    end
+
+    
+    action CreateGame
+       audio:Load("Sounds/Bing.ogg")
+
+       // give the audio some initial coordinates
+       audio:SetX(-3)
+       audio:SetY(-1)
+       audio:SetZ(1)
+       audio:SetVolume(1)
+
+       audio:PlayUntilDone()
+    end
+
+
+    action Update(number seconds)
+       // calculate the new x, y, and z coordinates based off the current coordinates.
+      //In this example, the x, y, and z coordinates are increased by 0.25 every second.
+       number newX = audio:GetX() + 0.30 * seconds
+//       number newY = audio:GetY() + 0.30 * seconds
+//       number newZ = audio:GetZ() + 0.30 * seconds
+       number newVolume = audio:GetVolume() * 1.0
+       // using the newly calculated coordinates, update the position of the object
+       audio:SetX(newX)
+//       audio:SetY(newY)
+//       audio:SetZ(newZ)
+       audio:SetVolume(newVolume)
+
+       audio:PlayUntilDone()
+
+    end
+end
+
+//use Libraries.Game.Game
+//use Libraries.Sound.Audio
+//
+//
+//       // give the audio some initial coordinates
+//       audio:SetX(-1)
+//       audio:SetY(0)
+//       audio:SetZ(1)
+////       audio:PlayUntilDone()
+//       audio:Play()
+//
+//
+//
+////text instuff = input("type a number")
+//
+//       audio:SetX(0)
+//       audio:SetY(0)
+//       audio:SetZ(1)
+//
+////       audio:PlayUntilDone()
+//       audio:Play()
+//
+//
+//       audio:SetX(1)
+//       audio:SetY(0)
+//       audio:SetZ(1)
+//
+////       audio:PlayUntilDone()
+//       audio:Play()Audio audio
+//
+////       audio:Load("Sounds/Firework.ogg")
+//       audio:Load("Sounds/Bing.ogg")
+//
+//
+//       // give the audio some initial coordinates
+//       audio:SetX(-1)
+//       audio:SetY(0)
+//       audio:SetZ(1)
+////       audio:PlayUntilDone()
+//       audio:Play()
+//
+//
+//
+////text instuff = input("type a number")
+//
+//       audio:SetX(0)
+//       audio:SetY(0)
+//       audio:SetZ(1)
+//
+////       audio:PlayUntilDone()
+//       audio:Play()
+//
+//
+//       audio:SetX(1)
+//       audio:SetY(0)
+//       audio:SetZ(1)
+//
+////       audio:PlayUntilDone()
+//       audio:Play()
+
+
+//class Main is Game
+//   Audio audio
+//
+//   action Main
+//       StartGame()
+//   end
+//
+//   action CreateGame
+//       audio:Load("Sounds/Firework.ogg")
+//
+//       // give the audio some initial coordinates
+//       audio:SetX(0)
+//       audio:SetY(1)
+//       audio:SetZ(-0)
+//
+//       audio:Play()
+//
+//       audio:SetX(0)
+//       audio:SetY(-1)
+//       audio:SetZ(-0)
+//
+//       audio:Play()
+//
+//   end
+
+//   action Update(number seconds)
+////       // calculate the new x, y, and z coordinates based off the current coordinates.
+////      //In this example, the x, y, and z coordinates are increased by 0.25 every second.
+//       number newX = audio:GetX() //+ 0.3 * seconds
+//       number newY = audio:GetY() //+ 0.3 * seconds
+//       number newZ = audio:GetZ()  //+ 0.3 * seconds
+//
+//       // using the newly calculated coordinates, update the position of the object
+//       audio:SetX(newX)
+//       audio:SetY(newY)
+//       audio:SetZ(newZ)
+//   end
+//end
+
+//use Libraries.Sound.Audio
+//Audio audio
+//audio:Load("Sounds/Clang.ogg")
+//
+//// this line sets the volume of our Audio object at 50% its maximum volume.
+//audio:SetVolume(0.5)
+//
+//// this line sets the pitch of our Audio object at 120% the normal pitch
+//audio:SetPitch(1.2)
+//
+//audio:PlayUntilDone()
+//
+//use Libraries.Sound.Audio
+//Audio audio
+//audio:Load("Sounds/song.ogg")
+//audio:Play()
+//
+//// this loop keeps our sound playing until it is done
+//repeat while audio:IsPlaying()
+//   // this conditional checks if the current volume is greater than 0. If it is, it decreases the volume
+//   if audio:GetVolume() > 0.0
+//   // this line calculates the new volume by getting the current volume and subtracting 0.00001% (one hundred-thousandth of a percent)
+//   number newVolume = audio:GetVolume() - 0.0000001
+//
+//   // this line sets the volumen to newVolume, which will have the effect of fading the sound out quickly.
+//   audio:SetVolume(newVolume)
+//   end
+//end
