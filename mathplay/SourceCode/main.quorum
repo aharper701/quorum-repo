@@ -1,0 +1,75 @@
+use Libraries.Compute.Math
+
+Math math
+
+number pi= math:pi
+number e = math:e
+
+number x = 100
+output x
+number y = math:Logarithm(x)
+number z = math:Logarithm(1000)
+output "A test " + x + " " +y
+output ""+ x + " "+y
+output x + y + "  " + z + x
+output ""+ x +y
+
+number foo = math:Cosine(math:pi/2)
+output foo
+number foofoo = math:Cosine(pi)
+output foofoo
+
+number result = math:NaturalLogarithm(e)
+output result
+
+
+//use Libraries.Game.Game
+//use Libraries.Sound.Audio
+//use Libraries.Compute.Vector3
+//
+//class Main is Game
+//    Audio audio
+//    action Main
+//        StartGame()
+//    end
+//
+//    
+//    action CreateGame
+//       audio:Load("Sounds/Bing.ogg")
+//
+//       // give the audio some initial coordinates
+//       audio:SetX(-5)
+//       audio:SetY(0)
+//       audio:SetZ(-1)
+////       // Set the Volume to a different initial setting
+////       audio:SetVolume(0.2)
+//
+//       audio:PlayUntilDone()
+//       output "Default maximum volume distance is " + audio:GetDefaultMaximumVolumeDistance()
+//       audio:SetMaximumVolumeDistance(3)
+//       output "Maximum volume distance is now  "  + audio:GetMaximumVolumeDistance()
+//
+//       output "Rolloff rate is " +  audio:GetRolloffRate()
+//       audio:SetRolloffRate(2)
+//       output "New rolloff rate is now " + audio:GetRolloffRate()
+//    end
+//
+//
+//    action Update(number seconds)
+//       // calculate the new x, y, and z coordinates based off the current coordinates.
+//      //In this example, the x, y, and z coordinates are increased by 0.25 every second.
+//       number newX = audio:GetX() + 0.6 * seconds
+//       number newY = audio:GetX() + 0.6 * seconds
+//       number newZ = audio:GetZ() //+ 0.60 * seconds
+//
+//       // Using the newly calculated coordinates, update the position of the object
+//       audio:SetX(newX)
+//       audio:SetY(newY)
+//       audio:SetZ(newZ)
+//
+//       output newX
+//
+//       audio:PlayUntilDone()
+//
+//    end   // End of action update
+//end   // End of action Main
