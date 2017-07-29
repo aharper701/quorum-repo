@@ -1,5 +1,6 @@
 use Libraries.Game.Game
 use Libraries.Sound.Audio
+use Libraries.Compute.Vector3
 
 class Main is Game
     Audio audio
@@ -12,94 +13,49 @@ class Main is Game
        audio:Load("Sounds/Bing.ogg")
 
        // give the audio some initial coordinates
-       audio:SetX(-3)
-       audio:SetY(-1)
-       audio:SetZ(1)
-       audio:SetVolume(1)
+       audio:SetX(-5)
+       audio:SetY(0)
+       audio:SetZ(-1)
+//       // Set the Volume to a different initial setting
+//       audio:SetVolume(0.2)
 
        audio:PlayUntilDone()
+       output "Default maximum volume distance is " + audio:GetDefaultMaximumVolumeDistance()
+       audio:SetMaximumVolumeDistance(3)
+       output "Maximum volume distance is now  "  + audio:GetMaximumVolumeDistance()
+
+       output "Rolloff rate is " +  audio:GetRolloffRate()
+       audio:SetRolloffRate(2)
+       output "New rolloff rate is now " + audio:GetRolloffRate()
     end
 
 
     action Update(number seconds)
        // calculate the new x, y, and z coordinates based off the current coordinates.
       //In this example, the x, y, and z coordinates are increased by 0.25 every second.
-       number newX = audio:GetX() + 0.30 * seconds
-//       number newY = audio:GetY() + 0.30 * seconds
-//       number newZ = audio:GetZ() + 0.30 * seconds
-       number newVolume = audio:GetVolume() * 1.0
-       // using the newly calculated coordinates, update the position of the object
+       number newX = audio:GetX() + 0.6 * seconds
+       number newY = audio:GetX() + 0.6 * seconds
+       number newZ = audio:GetZ() //+ 0.60 * seconds
+
+       // Using the newly calculated coordinates, update the position of the object
        audio:SetX(newX)
-//       audio:SetY(newY)
-//       audio:SetZ(newZ)
-       audio:SetVolume(newVolume)
+       audio:SetY(newY)
+       audio:SetZ(newZ)
+
+       output newX
 
        audio:PlayUntilDone()
 
-    end
-end
+    end   // End of action update
+end   // End of action Main
 
+
+
+//// Example from Quorum website Tutorial: Positional Audio
+//// Note that the website code is missing a "PlayUntilDone()" in the update section.
 //use Libraries.Game.Game
 //use Libraries.Sound.Audio
 //
-//
-//       // give the audio some initial coordinates
-//       audio:SetX(-1)
-//       audio:SetY(0)
-//       audio:SetZ(1)
-////       audio:PlayUntilDone()
-//       audio:Play()
-//
-//
-//
-////text instuff = input("type a number")
-//
-//       audio:SetX(0)
-//       audio:SetY(0)
-//       audio:SetZ(1)
-//
-////       audio:PlayUntilDone()
-//       audio:Play()
-//
-//
-//       audio:SetX(1)
-//       audio:SetY(0)
-//       audio:SetZ(1)
-//
-////       audio:PlayUntilDone()
-//       audio:Play()Audio audio
-//
-////       audio:Load("Sounds/Firework.ogg")
-//       audio:Load("Sounds/Bing.ogg")
-//
-//
-//       // give the audio some initial coordinates
-//       audio:SetX(-1)
-//       audio:SetY(0)
-//       audio:SetZ(1)
-////       audio:PlayUntilDone()
-//       audio:Play()
-//
-//
-//
-////text instuff = input("type a number")
-//
-//       audio:SetX(0)
-//       audio:SetY(0)
-//       audio:SetZ(1)
-//
-////       audio:PlayUntilDone()
-//       audio:Play()
-//
-//
-//       audio:SetX(1)
-//       audio:SetY(0)
-//       audio:SetZ(1)
-//
-////       audio:PlayUntilDone()
-//       audio:Play()
-
-
 //class Main is Game
 //   Audio audio
 //
@@ -111,34 +67,48 @@ end
 //       audio:Load("Sounds/Firework.ogg")
 //
 //       // give the audio some initial coordinates
-//       audio:SetX(0)
-//       audio:SetY(1)
-//       audio:SetZ(-0)
-//
-//       audio:Play()
-//
-//       audio:SetX(0)
+//       audio:SetX(-1)
 //       audio:SetY(-1)
-//       audio:SetZ(-0)
+//       audio:SetZ(-1)
 //
-//       audio:Play()
-//
+//       audio:PlayUntilDone()
 //   end
-
+//
 //   action Update(number seconds)
-////       // calculate the new x, y, and z coordinates based off the current coordinates.
-////      //In this example, the x, y, and z coordinates are increased by 0.25 every second.
-//       number newX = audio:GetX() //+ 0.3 * seconds
-//       number newY = audio:GetY() //+ 0.3 * seconds
-//       number newZ = audio:GetZ()  //+ 0.3 * seconds
+//       // calculate the new x, y, and z coordinates based off the current coordinates.
+//      //In this example, the x, y, and z coordinates are increased by 0.25 every second.
+//       number newX = audio:GetX() + 0.30 * seconds
+//       number newY = audio:GetY() + 0.30 * seconds
+//       number newZ = audio:GetZ() + 0.30 * seconds
 //
 //       // using the newly calculated coordinates, update the position of the object
 //       audio:SetX(newX)
 //       audio:SetY(newY)
 //       audio:SetZ(newZ)
+//
+//       audio:PlayUntilDone()
 //   end
 //end
 
+//use Libraries.Sound.Audio
+//
+//Audio front
+//Audio back
+//Audio center
+//
+//front:Load("Sounds/Firework.ogg")
+//back:Load("Sounds/Robot.ogg")
+//center:Load("Sounds/Modem.ogg")
+//
+//// set the balances of the objects (there is no need to set the fade of the center object because its default fade is 0)
+//front:SetFade(1)
+//back:SetFade(-1)
+//
+//front:PlayUntilDone()
+//back:PlayUntilDone()
+//center:PlayUntilDone()
+
+//// Another code example
 //use Libraries.Sound.Audio
 //Audio audio
 //audio:Load("Sounds/Clang.ogg")
@@ -150,7 +120,9 @@ end
 //audio:SetPitch(1.2)
 //
 //audio:PlayUntilDone()
-//
+
+
+//// Another code example
 //use Libraries.Sound.Audio
 //Audio audio
 //audio:Load("Sounds/song.ogg")
