@@ -1,0 +1,62 @@
+use Libraries.Sound.Audio
+use Libraries.Sound.AudioSamples
+use Libraries.Compute.Math
+use Libraries.Compute.Random
+use Libraries.Game.Game
+
+class Main is Game
+    Random random
+    Audio audio
+    Math math
+
+    integer direction = -1
+    number wavelength = 0.8
+    number cycle = 0.0
+
+    action CreateGame
+//        audio:Load(WhiteNoise(5.0))
+        audio:Load(Sine(440.0, 5.0))
+
+        audio:EnableLooping()
+        audio:Play()
+    end
+    
+    action Update(number seconds)
+    cycle = cycle + seconds
+    audio:SetVolume(audio:GetVolume() + (direction*wavelength*seconds))
+    audio:SetBalance(audio:GetBalance() + (direction*wavelength*seconds))
+    if cycle > wavelength
+        cycle = 0.0
+        direction = -1*direction
+    end
+    end
+action Main
+    StartGame()
+end
+
+    action Sine(number frequency, number duration) returns AudioSamples
+        number twoPI = 2*math:pi
+        AudioSamples samples
+        samples:SetSizeInSeconds(duration)
+        number sampleSize = samples:GetSamplesPerSecond()
+        integer counter = 0
+        repeat samples:GetSize() times
+            number s = math:Sine(frequency * (twoPI * (counter / sampleSize)))
+            samples:Set(counter, s)
+            counter = counter+1
+        end
+        return samples
+    end
+
+    action WhiteNoise(number duration) returns AudioSamples
+        AudioSamples samples
+        samples:SetSizeInSeconds(duration)
+        integer counter = 0
+        repeat samples:GetSize() times
+            samples:Set(counter, (random:RandomNumber()*2-1))
+            counter = counter+1
+        end
+    return samples
+end
+
+end
