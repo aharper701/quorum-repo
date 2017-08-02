@@ -3,6 +3,7 @@ use Libraries.Sound.AudioSamples
 use Libraries.Compute.Math
 use Libraries.Compute.Random
 use Libraries.Game.Game
+use Libraries.Sound.Speech
 
 class Main is Game
     Random random
